@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Todos from "./components/Todos";
 import "./App.css";
 import NewTodo from "./components/NewTodo";
+import Facts from "./components/Facts";
 import TodosContextProvider from "./store/todos-context";
 
 function App() {
   return (
     <TodosContextProvider>
-      <NewTodo />
-      <Todos />
+      <Facts />
+      {/* <NewTodo />
+      <Todos /> */}
     </TodosContextProvider>
   );
 }
