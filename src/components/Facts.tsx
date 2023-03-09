@@ -48,7 +48,7 @@ const FactsList: React.FC = () => {
     <>
       {error && <div>Error</div>}
       {!error && (
-        <div>
+        <div className={classes.list}>
           <h2>{data[0]?.fact}</h2>
           <ul>
             {data?.map((item) => (
