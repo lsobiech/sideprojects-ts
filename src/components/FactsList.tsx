@@ -1,20 +1,14 @@
 import React, { useState, useEffect } from "react";
-import classes from "./Facts.module.css";
-// import ErrorMessage from "./Error";
+import classes from "./FactsList.module.css";
 
-interface Facts {
-  fact: string;
-}
-
-interface Res {
-  data: Facts[];
+interface Fact {
   fact: string;
 }
 
 const API_URL = "https://catfact.ninja/facts";
 
 const FactsList: React.FC = () => {
-  const [data, setData] = useState<Array<Res>>([]);
+  const [data, setData] = useState<Fact[]>([]);
   const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
@@ -23,17 +17,6 @@ const FactsList: React.FC = () => {
         const { data } = await fetch(API_URL).then((res) => res.json());
         if (data.length !== 0) {
           setData(data);
-          // .then((response) => {
-          //   console.log("re", response);
-          //   return response.json();
-          // }) // returns
-          // .then((json) => {
-          //   console.log("json", json);
-          //   setData(json.data);
-          // })
-          // .catch((err) => {
-          //   console.log("err", err);
-          // });
         }
       } catch (err) {
         console.log("err", err);
@@ -42,7 +25,7 @@ const FactsList: React.FC = () => {
     };
 
     pullData();
-  }, []);
+  }, [setData, setError]);
 
   return (
     <>
@@ -51,8 +34,8 @@ const FactsList: React.FC = () => {
         <div className={classes.list}>
           <h2>{data[0]?.fact}</h2>
           <ul>
-            {data?.map((item) => (
-              <li key={item.fact}>&#128571; {item.fact}</li>
+            {data?.map(({fact}) => (
+              <li key={fact}>&#128571; {fact}</li>
             ))}
           </ul>
         </div>
