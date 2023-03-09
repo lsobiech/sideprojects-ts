@@ -18,6 +18,7 @@ const FactsList: React.FC = () => {
           console.log("res", res);
           return res.json();
         });
+
         if (data.length !== 0) {
           setData(data);
         }
