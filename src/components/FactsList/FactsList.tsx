@@ -14,7 +14,10 @@ const FactsList: React.FC = () => {
   useEffect(() => {
     const pullData = async () => {
       try {
-        const { data } = await fetch(API_URL).then((res) => res.json());
+        const { data } = await fetch(API_URL).then((res) => {
+          console.log("res", res);
+          return res.json();
+        });
         if (data.length !== 0) {
           setData(data);
         }
@@ -34,7 +37,7 @@ const FactsList: React.FC = () => {
         <div className={classes.list}>
           <h2>{data[0]?.fact}</h2>
           <ul>
-            {data?.map(({fact}) => (
+            {data?.map(({ fact }) => (
               <li key={fact}>&#128571; {fact}</li>
             ))}
           </ul>
