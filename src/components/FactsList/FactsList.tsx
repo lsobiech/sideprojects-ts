@@ -21,7 +21,6 @@ const FactsList: React.FC = () => {
           setData(data);
         }
       } catch (err) {
-        console.log("err", err);
         setError(true);
       }
     };
