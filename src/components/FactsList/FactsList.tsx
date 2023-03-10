@@ -14,10 +14,7 @@ const FactsList: React.FC = () => {
   useEffect(() => {
     const pullData = async () => {
       try {
-        const { data } = await fetch(API_URL).then((res) => {
-          console.log("res", res);
-          return res.json();
-        });
+        const { data } = await fetch(API_URL).then((res) => res.json());
 
         if (data.length !== 0) {
           setData(data);
