@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Error from "../Error/Error";
 import classes from "./FactsList.module.css";
 
 interface Fact {
@@ -14,10 +15,7 @@ const FactsList: React.FC = () => {
   useEffect(() => {
     const pullData = async () => {
       try {
-        const { data } = await fetch(API_URL).then((res) => {
-          console.log("res", res);
-          return res.json();
-        });
+        const { data } = await fetch(API_URL).then((res) => res.json());
 
         if (data.length !== 0) {
           setData(data);
@@ -33,7 +31,7 @@ const FactsList: React.FC = () => {
 
   return (
     <>
-      {error && <div>Error</div>}
+      {error && <Error message="Error" />}
       {!error && (
         <div className={classes.list}>
           <h2>{data[0]?.fact}</h2>
